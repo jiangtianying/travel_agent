@@ -143,7 +143,3 @@ https://platform.openai.com/traces
 - **Alternative Model**: Gemini 2.0 Flash (requires GEMINI_API_KEY)
 
 You can switch models using the dropdown in the UI.
-
-## License
-
-MIT
