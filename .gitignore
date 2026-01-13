@@ -15,3 +15,6 @@ wheels/
 # Node.js
 node_modules/
 frontend/dist/
+
+# Claude instructions
+instructions_claude.md
