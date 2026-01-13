@@ -1,0 +1,34 @@
+flowchart TD
+    Start([User Sends Message]) --> Store[Store in Conversation History]
+    Store --> Analyze[Communication Agent: Analyze Intent]
+
+    Analyze --> Intent{Intent Type?}
+
+    Intent -->|new_trip| NewTrip[Handle New Trip]
+    Intent -->|modify_trip| Modify[Handle Modification]
+    Intent -->|ask_question| Question[Handle Question]
+    Intent -->|confirm| Confirm[Handle Confirmation]
+    Intent -->|reject| Reject[Handle Rejection]
+    Intent -->|unclear| Check{Has Itinerary?}
+
+    Check -->|Yes, in review| Modify
+    Check -->|No| General[Handle General]
+
+    NewTrip --> Search[Search Agent: Web Search]
+    Search --> Plan[Planner Agent: Create Itinerary]
+    Plan --> Format[Communication Agent: Format Response]
+
+    Modify --> Optimize[Planner Agent: Optimize with History]
+    Optimize --> Format
+
+    Question --> Answer[Communication Agent: Answer with Context]
+    Answer --> Response
+
+    Confirm --> Summary[Communication Agent: Summarize Trip]
+    Summary --> Response
+
+    Reject --> Response[Return Response to User]
+    General --> Response
+    Format --> Response
+
+    Response --> Display([Display in Chat])

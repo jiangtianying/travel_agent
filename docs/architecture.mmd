@@ -1,0 +1,48 @@
+flowchart TB
+    subgraph Frontend["Frontend (React + TypeScript)"]
+        UI[Chat Interface]
+        MS[Model Selector]
+        API_Client[API Client]
+    end
+
+    subgraph Backend["Backend (FastAPI)"]
+        API[REST API Endpoints]
+        SM[Session Manager]
+
+        subgraph Session["Travel Agent Session"]
+            CH[Conversation History]
+            State[Session State]
+            Itinerary[Current Itinerary]
+        end
+    end
+
+    subgraph Agents["AI Agents"]
+        CA[Communication Agent]
+        SA[Search Agent]
+        PA[Planner Agent]
+    end
+
+    subgraph External["External Services"]
+        MP[Model Provider]
+        OpenAI[OpenAI API]
+        Gemini[Gemini API]
+        Serper[Serper Web Search]
+    end
+
+    UI --> API_Client
+    MS --> API_Client
+    API_Client <--> API
+    API <--> SM
+    SM <--> Session
+
+    Session --> CA
+    Session --> SA
+    Session --> PA
+
+    CA --> MP
+    SA --> MP
+    SA --> Serper
+    PA --> MP
+
+    MP --> OpenAI
+    MP --> Gemini
